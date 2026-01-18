@@ -28,9 +28,11 @@ export default function IncidentNewPage() {
       title,
       status: "open" as const,
       priority: priority as "low" | "medium" | "high" | "critical",
+      severity: priority as "low" | "medium" | "high" | "critical",
       territory: territory.trim(),
+      location: territory.trim(), // Using territory as location placeholder for now
+      date: new Date().toISOString().split("T")[0],
       description: description.trim(),
-      category: "Infraestructura",
       createdAt: new Date().toISOString(),
     };
 
