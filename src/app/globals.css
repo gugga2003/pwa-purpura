@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 20px;
+}
+
+body {
+    min-height: max(884px, 100dvh);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.ios-blur {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.ios-shadow {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+.soft-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.custom-shadow {
+  box-shadow: 0 4px 20px -2px rgba(135, 29, 117, 0.05);
+}
+
+.glass-nav {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.dark .glass-nav {
+  background-color: rgba(32, 18, 29, 0.85);
+}
+
+.shadow-soft-glow {
+  box-shadow: 0 0 20px rgba(133, 28, 116, 0.25);
+}
+
+.signature-canvas-area {
+  touch-action: none;
+  background-image: radial-gradient(#e4dce3 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+}
+
+.ticket-edge {
+  background-image: radial-gradient(circle at 0px 50%, transparent 10px, white 10px);
+  background-size: 100% 20px;
+}
+
+.dotted-divider {
+  border-top: 2px dashed #e4dce3;
+}
+
+.tree-line {
+  position: absolute;
+  left: -20px;
+  top: -12px;
+  bottom: 24px;
+  width: 2px;
+  background-color: #e5e7eb;
+}
+
+.tree-branch {
+  position: absolute;
+  left: -20px;
+  top: 24px;
+  width: 20px;
+  height: 2px;
+  background-color: #e5e7eb;
+}
+
+.diff-highlight {
+  color: #871d75;
+  font-weight: 700;
+}
+
+.custom-checkbox {
+  --checkbox-tick-svg: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='rgb(255,255,255)' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+}
+
+.monospace-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.ring-chart {
+  transform: rotate(-90deg);
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e4dce3;
+  border-radius: 10px;
+}
+
+.custom-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.transition-active {
+  transition: transform 0.15s ease;
+}
+
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: #851c74;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #851c74;
+}
+
+.shadow-purple-900\/20 {
+  --tw-shadow-color: rgb(88 28 135 / 0.2);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-purple-900\/30 {
+  --tw-shadow-color: rgb(88 28 135 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

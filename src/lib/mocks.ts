@@ -1,0 +1,188 @@
+export type Role = "admin" | "user";
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: Role;
+  territory: string;
+  avatar: string;
+}
+
+export interface Task {
+  id: string;
+  title: string;
+  status: "pending" | "in_progress" | "done";
+  date: string;
+  description: string;
+  dueDate: string;
+  priority: "high" | "medium" | "low";
+  category: string;
+  territory: string;
+  assignee: string;
+  subtasksDone: number;
+  subtasksTotal: number;
+}
+
+export interface Incident {
+  id: string;
+  title: string;
+  severity: "low" | "medium" | "high" | "critical";
+  status: "open" | "resolved" | "in_review";
+  date: string;
+  location: string;
+  description: string;
+  territory: string;
+  createdAt: string;
+  priority: "high" | "medium" | "low" | "critical"; // Mapping to severity usually
+}
+
+export interface Alert {
+  id: string;
+  title: string;
+  message?: string;
+  type: "warning" | "info" | "error" | "system" | "security" | "news"; // Added extended types for AlertsHub
+  isRead: boolean;
+  date: string;
+  timeAgo?: string;
+  createdAt?: string;
+}
+
+export interface Kpis {
+  activeAlerts: number;
+  pendingTasks: number;
+  projects: number;
+  coverage: number;
+  incidents: number;
+}
+
+export interface Draft {
+  id: string;
+  title: string;
+  type: string;
+  progress: number; // 0-100
+  lastModified: string;
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  status: "planning" | "in_progress" | "on_hold" | "completed";
+  deadline: string;
+  kpis: { completed: number; total: number };
+  description?: string;
+}
+
+export const mockDrafts: Draft[] = [
+  { id: "d1", title: "Encuesta de Satisfacción", type: "survey", progress: 60, lastModified: "Hace 2h" },
+  { id: "d2", title: "Informe de Visita - Escuela 404", type: "report", progress: 30, lastModified: "Ayer" },
+];
+
+export const mockProjects: Project[] = [
+  { id: "p1", title: "Mejora Urbana Zona 1", status: "in_progress", deadline: "2024-03-01", kpis: { completed: 15, total: 40 }, description: "Renovación de espacios verdes." },
+  { id: "p2", title: "Campaña de Vacunación", status: "planning", deadline: "2024-04-15", kpis: { completed: 0, total: 120 }, description: "Coordinación con centros de salud." },
+];
+
+export const mockUserAdmin: User = {
+  id: "admin-1",
+  name: "Admin La Púrpura",
+  email: "admin@lapurpura.com",
+  role: "admin",
+  territory: "Mendoza Centro",
+  avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuAzx-VaGVrMQA2ZySeUcKkrzxuiAjEaqtxxWEBxoxmmheyOgzNSnl1ZUyJfchXj_o2AiYz8R1ufZOSI0ePDZBJEyKVB3rYVqInPRRtN48E5EzPRYRb92XQdgS6rDfUq4YJ6_ez1NcpTXAJhB-HP3TxlVtmH2mFuFuptl7kFYevHoHJWk8h3eRTMt2_D4RA5wSbvc-VIo5HNOqlVJR4GO8YRBZg_rIY48u7vX-BQ49IwP3eBx0D8Bby2Izvj_YOKA06dCkjkpP-oC30",
+};
+
+export const mockUserRegular: User = {
+  id: "user-1",
+  name: "Juan Pérez",
+  email: "juan.perez@lapurpura.com",
+  role: "user",
+  territory: "Godoy Cruz",
+  avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuAzx-VaGVrMQA2ZySeUcKkrzxuiAjEaqtxxWEBxoxmmheyOgzNSnl1ZUyJfchXj_o2AiYz8R1ufZOSI0ePDZBJEyKVB3rYVqInPRRtN48E5EzPRYRb92XQdgS6rDfUq4YJ6_ez1NcpTXAJhB-HP3TxlVtmH2mFuFuptl7kFYevHoHJWk8h3eRTMt2_D4RA5wSbvc-VIo5HNOqlVJR4GO8YRBZg_rIY48u7vX-BQ49IwP3eBx0D8Bby2Izvj_YOKA06dCkjkpP-oC30",
+};
+
+export const mockTasks: Task[] = [
+  {
+    id: "t1",
+    title: "Censo Barrio La Gloria",
+    status: "in_progress",
+    date: "2024-01-20",
+    description: "Relevamiento de familias con necesidades básicas insatisfechas.",
+    dueDate: "2024-01-25",
+    priority: "high",
+    category: "Operativo",
+    territory: "Zona Sur",
+    assignee: "Juan Pérez",
+    subtasksDone: 15,
+    subtasksTotal: 45
+  },
+  {
+    id: "t2",
+    title: "Reparto de Folletería",
+    status: "done",
+    date: "2024-01-18",
+    description: "Difusión de actividades del centro comunitario.",
+    dueDate: "2024-01-18",
+    priority: "medium",
+    category: "Difusión",
+    territory: "Godoy Cruz",
+    assignee: "Maria Gomez",
+    subtasksDone: 200,
+    subtasksTotal: 200
+  },
+  {
+    id: "t3",
+    title: "Asistencia Alimentaria",
+    status: "pending",
+    date: "2024-01-22",
+    description: "Entrega de módulos en sede central.",
+    dueDate: "2024-01-22",
+    priority: "high",
+    category: "Social",
+    territory: "Capital",
+    assignee: "Carlos Ruiz",
+    subtasksDone: 0,
+    subtasksTotal: 100
+  },
+];
+
+export const mockIncidents: Incident[] = [
+  {
+    id: "i1",
+    title: "Luminaria Rota",
+    severity: "low",
+    status: "open",
+    date: "2024-01-19",
+    location: "Calle San Martín 1200",
+    description: "Falla en el alumbrado público",
+    territory: "Zona Norte",
+    priority: "low",
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: "i2",
+    title: "Microbasural detectado",
+    severity: "medium",
+    status: "open",
+    date: "2024-01-18",
+    location: "Espana y Rivadavia",
+    description: "Acumulación de residuos en esquina",
+    territory: "Zona Este",
+    priority: "medium",
+    createdAt: new Date().toISOString()
+  },
+];
+
+export const mockAlerts: Alert[] = [
+  { id: "a1", title: "Nueva tarea asignada", message: "Se te ha asignado 'Censo B. La Gloria'", type: "info", isRead: false, date: "Hace 5 min", timeAgo: "5m", createdAt: new Date().toISOString() },
+  { id: "a2", title: "Alerta climática: Granizo", message: "Se pronostica granizo severo en zona Este", type: "warning", isRead: false, date: "Hace 1 hora", timeAgo: "1h", createdAt: new Date(Date.now() - 3600000).toISOString() },
+  { id: "a3", title: "Sistema Inactivo", message: "Mantenimiento programado 22:00hs", type: "system", isRead: true, date: "Ayer", timeAgo: "1d", createdAt: new Date(Date.now() - 86400000).toISOString() },
+];
+
+export const mockKpis: Kpis = {
+  activeAlerts: 4,
+  pendingTasks: 12,
+  projects: 8,
+  coverage: 68,
+  incidents: 24,
+};
