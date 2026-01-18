@@ -1,1 +1,9 @@
-"use client";`n`nimport ModulePlaceholder from "@/components/templates/ModulePlaceholder";`nimport { useParams } from "next/navigation";`n`nexport default function Page() { const { id } = useParams(); return <ModulePlaceholder title="Reporte #" + id />; }
+"use client";
+
+import ModulePlaceholder from "@/components/templates/ModulePlaceholder";
+import { useParams } from "next/navigation";
+
+export default function Page() {
+    const { id } = useParams();
+    return <ModulePlaceholder title={"Reporte #" + id} />;
+}
