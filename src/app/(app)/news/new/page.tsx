@@ -3,11 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { appStore, useAppStore } from "@/lib/store";
+import { useAppStore } from "@/lib/store";
 
 export default function NewsNewPage() {
   const router = useRouter();
-  const session = useAppStore((state) => state.session);
+  const { user, addNews, addToOfflineQueue } = useAppStore((state) => ({
+    user: state.user,
+    addNews: state.addNews,
+    addToOfflineQueue: state.addToOfflineQueue,
+  }));
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -18,12 +22,14 @@ export default function NewsNewPage() {
       return;
     }
 
-    appStore.addNews({
+    addNews({
+      id: crypto.randomUUID(),
+      date: new Date().toISOString().split('T')[0],
       title: title.trim(),
       summary: body.trim().slice(0, 140),
-      author: session?.user.name ?? "Admin",
+      author: user?.name ?? "Admin",
     });
-    appStore.enqueueOffline({
+    addToOfflineQueue({
       type: "draft",
       title: `Novedad: ${title.trim()}`,
     });
@@ -33,7 +39,7 @@ export default function NewsNewPage() {
       body: JSON.stringify({
         title: title.trim(),
         summary: body.trim().slice(0, 140),
-        author: session?.user.name ?? "Admin",
+        author: user?.name ?? "Admin",
       }),
     });
     router.push("/news");

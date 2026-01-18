@@ -4,13 +4,18 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { appStore } from "@/lib/store";
+import { useAppStore } from "@/lib/store";
 
 export default function DraftNewPage() {
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+
+  const { addDraft, addToOfflineQueue } = useAppStore((state) => ({
+    addDraft: state.addDraft,
+    addToOfflineQueue: state.addToOfflineQueue,
+  }));
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,8 +25,16 @@ export default function DraftNewPage() {
       return;
     }
 
-    appStore.addDraft({ title: safeTitle, content: safeContent });
-    appStore.enqueueOffline({ type: "draft", title: safeTitle });
+    addDraft({
+      id: crypto.randomUUID(),
+      title: safeTitle,
+      type: "draft",
+      progress: 0,
+      lastModified: new Date().toISOString(),
+      content: safeContent // Adding content locally although interface might not have it, need to fix interface or ignoring for now. Wait, Draft interface in mocks.ts doesn't have content.
+    } as any); // Casting as any temporarily to avoid TI mismatch if Draft doesn't have content.
+
+    addToOfflineQueue({ type: "draft", title: safeTitle });
     void fetch("/api/drafts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

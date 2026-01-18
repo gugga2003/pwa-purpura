@@ -186,3 +186,37 @@ export const mockKpis: Kpis = {
   coverage: 68,
   incidents: 24,
 };
+
+export interface News {
+  id: string;
+  title: string;
+  summary: string;
+  author: string;
+  date: string;
+}
+
+export const mockNews: News[] = [
+  { id: "n1", title: "Actualización de Protocolos", summary: "Nuevas directivas para el relevamiento en zonas rojas.", author: "Admin", date: "2024-01-15" },
+  { id: "n2", title: "Feriado del 25 de Mayo", summary: "El centro permanecerá cerrado.", author: "RRHH", date: "2024-05-20" }
+];
+
+export const mockInvites = [
+  { id: "inv1", email: "nuevo@lapurpura.com", text: "Invitación pendiente" }
+];
+
+export const mockOfflineQueue = [];
+
+export const mockReports = [
+  { id: "r1", title: "Reporte Mensual Enero", status: "completed" }
+];
+
+export const mockSurveys = [
+  { id: "s1", title: "Encuesta de Calidad", responses: 15 }
+];
+
+export const mockUsers = [
+  mockUserAdmin,
+  mockUserRegular
+];
+
+export const mockUser = mockUserRegular;

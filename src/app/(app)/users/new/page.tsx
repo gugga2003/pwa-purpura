@@ -4,10 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { appStore } from "@/lib/store";
+import { useAppStore } from "@/lib/store";
 
 export default function UserNewPage() {
   const router = useRouter();
+  const addUser = useAppStore((state) => state.addUser);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -21,11 +22,13 @@ export default function UserNewPage() {
       return;
     }
 
-    appStore.addUser({
+    addUser({
+      id: crypto.randomUUID(),
       name: safeName,
       email: safeEmail,
-      role: role || "Operador",
+      role: role === "Administrador" ? "admin" : "user",
       territory: territory || "Zona Norte",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuAzx-VaGVrMQA2ZySeUcKkrzxuiAjEaqtxxWEBxoxmmheyOgzNSnl1ZUyJfchXj_o2AiYz8R1ufZOSI0ePDZBJEyKVB3rYVqInPRRtN48E5EzPRYRb92XQdgS6rDfUq4YJ6_ez1NcpTXAJhB-HP3TxlVtmH2mFuFuptl7kFYevHoHJWk8h3eRTMt2_D4RA5wSbvc-VIo5HNOqlVJR4GO8YRBZg_rIY48u7vX-BQ49IwP3eBx0D8Bby2Izvj_YOKA06dCkjkpP-oC30"
     });
     void fetch("/api/users", {
       method: "POST",

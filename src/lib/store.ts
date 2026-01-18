@@ -3,8 +3,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import {
-  User, Task, Incident, Alert, Kpis, Draft, Project,
-  mockUserRegular, mockTasks, mockIncidents, mockAlerts, mockKpis, mockDrafts, mockProjects
+  User, Task, Incident, Alert, Kpis, Draft, Project, News,
+  mockUserRegular, mockTasks, mockIncidents, mockAlerts, mockKpis, mockDrafts, mockProjects, mockNews, mockUsers
 } from "./mocks";
 
 interface AppState {
@@ -26,6 +26,12 @@ interface AppState {
   setAlerts: (alerts: Alert[]) => void;
   addAlert: (alert: Alert) => void;
   markAlertAsRead: (id: string) => void;
+
+  news: News[];
+  addNews: (news: News) => void;
+
+  users: User[];
+  addUser: (user: User) => void;
 
   drafts: Draft[];
   addDraft: (draft: Draft) => void;
@@ -69,6 +75,12 @@ export const useAppStore = create<AppState>()(
         alerts: state.alerts.map((a) => a.id === id ? { ...a, isRead: true } : a)
       })),
 
+      news: mockNews,
+      addNews: (news) => set((state) => ({ news: [news, ...state.news] })),
+
+      users: mockUsers,
+      addUser: (user) => set((state) => ({ users: [user, ...state.users] })),
+
       drafts: mockDrafts,
       addDraft: (draft) => set((state) => ({ drafts: [draft, ...state.drafts] })),
       removeDraft: (id) => set((state) => ({ drafts: state.drafts.filter((d) => d.id !== id) })),
@@ -80,7 +92,7 @@ export const useAppStore = create<AppState>()(
       offlineQueue: [],
       addToOfflineQueue: (item) => set((state) => ({ offlineQueue: [...state.offlineQueue, item] })),
       removeFromOfflineQueue: (id) => set((state) => ({ offlineQueue: state.offlineQueue.filter((i) => i.id !== id) })),
-      clearOfflineQueue: () => set({ offlineQueue: [] }),
+      clearOfflineQueue: () => set({ offlineQueue: [] }), // Added missing comma and closing brace earlier so careful here
 
       // KPIs
       kpis: mockKpis,
