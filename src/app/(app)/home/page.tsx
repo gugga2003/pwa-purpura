@@ -501,7 +501,7 @@ export default function HomePage() {
           </Link>
         </section>
         <section>
-          <h3 className="text-lg font-bold mb-3">Today's Activity</h3>
+          <h3 className="text-lg font-bold mb-3">Today&apos;s Activity</h3>
           <div className="space-y-3">
             <div className="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-soft flex items-start gap-3 border-l-4 border-success">
               <div className="mt-0.5">

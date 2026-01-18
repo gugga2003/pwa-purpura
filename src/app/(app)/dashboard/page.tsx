@@ -144,7 +144,7 @@ export default function DashboardPage() {
             </div>
             <div className="flex-1">
               <p className="text-sm text-[#171216] dark:text-white leading-snug">
-                <span className="font-bold">Marta Gómez</span> actualizó el estado del Proyecto Rama "Iluminación".
+                <span className="font-bold">Marta Gómez</span> actualizó el estado del Proyecto Rama &quot;Iluminación&quot;.
               </p>
               <p className="text-xs text-gray-400 mt-1 font-medium">Hace 3 h</p>
             </div>
