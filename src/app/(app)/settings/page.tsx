@@ -87,7 +87,7 @@ export default function SettingsPage() {
             <span className="text-[10px] font-medium mt-8">Ruta</span>
           </Link>
           <NavLink href="/reports" icon="bar_chart" label="Reportes" />
-          <NavLink href="/settings" iconFilled label="settings" labelText="Ajustes" />
+          <NavLink href="/settings" icon="settings" label="Ajustes" iconFilled />
         </div>
       </nav>
       <div className="h-[83px]"></div>
