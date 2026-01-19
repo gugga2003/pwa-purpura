@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 export default function SurveyPreviewPage() {
   const router = useRouter();
-  const questions = [
+  const questions: { id: number; label: string; type: 'radio' | 'photo' | 'textarea'; options?: string[] }[] = [
     {
       id: 1,
       label: '¿El material POP de la campaña "Verano" está visible desde la entrada principal?',
